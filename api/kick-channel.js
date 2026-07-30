@@ -1,16 +1,7 @@
-// GET /api/kick-channel?slug=<kick_kullanici_adi>
-//
-// Tarayıcıdan doğrudan kick.com/api/v2/channels/{slug} çağrısı çoğu zaman
-// CORS/Cloudflare tarafından engelleniyor. Bu fonksiyon aynı isteği SUNUCUDAN
-// atar (CORS diye bir kavram sunucular arasında yok) ve sonucu, siteye
-// CORS izni vererek geri döner.
-//
-// Not: Bu, Kick'in resmi OAuth API'si DEĞİL — resmi API chatroom ID'yi
-// döndürmüyor. Bu yüzden burada client_id/client_secret kullanmıyoruz;
-// gerek yok. Sadece isteğin kaynağını tarayıcıdan sunucuya taşıyoruz.
+
 
 module.exports = async (req, res) => {
-  // Kendi sitenden (veya herhangi bir yerden) çağrılabilsin diye CORS izni.
+  
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -33,7 +24,7 @@ module.exports = async (req, res) => {
     const upstream = await fetch(`https://kick.com/api/v2/channels/${encodeURIComponent(slug)}`, {
       headers: {
         'Accept': 'application/json',
-        // Kick'in Cloudflare koruması tarayıcı benzeri isteklere daha yumuşak davranıyor.
+       
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
       },
       signal: controller.signal,
