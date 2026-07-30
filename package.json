@@ -1,0 +1,9 @@
+{
+  "name": "kick-cekilis-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kick çekiliş sitesi için kanal/chatroom ID bulma proxy'si (Vercel serverless).",
+  "engines": {
+    "node": ">=18"
+  }
+}
